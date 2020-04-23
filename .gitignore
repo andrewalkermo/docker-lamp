@@ -1,6 +1,6 @@
 .env
 .vscode
-config/*
+config/vhosts
 data/*
 logs/*
 html/*
