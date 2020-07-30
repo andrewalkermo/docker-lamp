@@ -7,11 +7,11 @@ services:
     container_name: 'php7.0'
     restart: 'always'
     ports:
-      - "80:80"
-      - "443:443"
+      - "81:80"
+      - "444:443"
     links: 
       - mysql5.7
-    volumes: 
+    volumes:   
       - ${DOCUMENT_ROOT-..}:/var/www/html
       - ${PHP_INI-./config/php/php.ini}:/usr/local/etc/php/php.ini
       - ${VHOSTS_DIR-./config/vhosts}:/etc/apache2/sites-enabled
@@ -21,7 +21,7 @@ services:
     container_name: 'mysql5.7'
     restart: 'always'
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes: 
       - ${MYSQL_DATA_DIR-./data/mysql}:/var/lib/mysql
       - ${MYSQL_LOG_DIR-./logs/mysql}:/var/log/mysql
@@ -48,4 +48,4 @@ services:
     container_name: 'redis'
     image: redis:latest
     ports:
-      - "6379:6379"
+      - "6380:6379"
