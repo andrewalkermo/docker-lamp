@@ -4,7 +4,7 @@ services:
   webserver:
     build: 
       context: ./bin/webserver
-    container_name: 'php7.0'
+    container_name: 'php5.6'
     restart: 'always'
     ports:
       - "80:80"
