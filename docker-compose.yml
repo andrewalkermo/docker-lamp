@@ -7,42 +7,10 @@ services:
     container_name: 'php7.0'
     restart: 'always'
     ports:
-      - "80:80"
-      - "443:443"
-    links: 
-      - mysql5.7
+      - "8080:80"
+      - "444:443"
     volumes: 
       - ${DOCUMENT_ROOT-..}:/var/www/html
       - ${PHP_INI-./config/php/php.ini}:/usr/local/etc/php/php.ini
       - ${VHOSTS_DIR-./config/vhosts}:/etc/apache2/sites-enabled
       - ${LOG_DIR-./logs/apache2}:/var/log/apache2
-  mysql5.7:
-    build: ./bin/mysql
-    container_name: 'mysql5.7'
-    restart: 'always'
-    ports:
-      - "3306:3306"
-    volumes: 
-      - ${MYSQL_DATA_DIR-./data/mysql}:/var/lib/mysql
-      - ${MYSQL_LOG_DIR-./logs/mysql}:/var/log/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD-root}
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: 'phpmyadmin'
-    links:
-      - mysql5.7
-    environment:
-      PMA_HOST: mysql5.7
-      PMA_PORT: 3306
-    ports:
-      - '8080:80'
-    volumes: 
-      - /sessions
-      - ${PHP_INI-./config/php/php.ini}:/usr/local/etc/php/php.ini
-
-  redis:
-    container_name: 'redis'
-    image: redis:latest
-    ports:
-      - "6379:6379"
